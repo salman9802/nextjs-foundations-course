@@ -1,6 +1,7 @@
 import { fetchCustomers, fetchInvoiceById } from "@/app/lib/data";
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 import EditInvoiceForm from "@/app/ui/invoices/edit-form";
+import { notFound } from "next/navigation";
 
 type TPageProps = {
   params: Promise<{
@@ -17,6 +18,10 @@ export default async function Page(props: TPageProps) {
     fetchInvoiceById(invoiceId),
     fetchCustomers()
   ]);
+
+  if (!invoice) {
+    notFound();
+  }
 
   return (
     <main>
