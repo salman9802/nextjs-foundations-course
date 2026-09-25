@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { fetchCustomers, fetchInvoiceById } from "@/app/lib/data";
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 import EditInvoiceForm from "@/app/ui/invoices/edit-form";
@@ -9,6 +10,10 @@ type TPageProps = {
   }>;
 }
 type TPageParams = TPageProps["params"];
+
+export const metadata: Metadata = {
+  title: "Invoice Edit"
+};
 
 export default async function Page(props: TPageProps) {
   const params = await props.params;
